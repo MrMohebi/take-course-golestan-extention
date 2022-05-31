@@ -1,0 +1,17 @@
+{
+  "name": "auto GTC",
+  "version": "1.0.0",
+  "description": "auto Golestan Take Course",
+  "manifest_version": 3,
+  "author": "MrM - MMMohebi",
+  "action":{
+    "default_popup": "index.html",
+    "default_title": "auto GTC"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "permissions": [
+    "storage"
+  ]
+}
