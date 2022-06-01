@@ -11,6 +11,18 @@
 //  "background": {
 //    "service_worker": "js/background.js"
 //  },
+  "content_scripts": [
+    {
+      "run_at": "document_end",
+      "matches": ["*://*.uk.ac.ir/*"],
+      "js": ["js/checkForTimeStart.js"]
+    }
+  ],
+  "host_permissions": ["<all_urls>"],
+  "web_accessible_resources": [{
+    "resources": ["js/openEnterCourses.js"],
+    "matches": ["<all_urls>"]
+  }],
   "permissions": [
     "storage"
   ]
