@@ -1,3 +1,13 @@
+window.addEventListener("message", function(event) {
+    // We only accept messages from ourselves
+    if (event.source !== window)
+        return;
+    console.log(event)
+    if (event.data.type && (event.data.type === "FROM_CONTENT")) {
+        console.log("Page script received: " + event.data.text)
+        console.log(event.data.text) // "Something message here"
+    }
+}, false)
 
 async function openEnterCourses(courseCodes){
     console.log('start opening')
