@@ -2,10 +2,9 @@ window.addEventListener("message", function(event) {
     // We only accept messages from ourselves
     if (event.source !== window)
         return;
-    console.log(event)
-    if (event.data.type && (event.data.type === "FROM_CONTENT")) {
-        console.log("Page script received: " + event.data.text)
-        console.log(event.data.text) // "Something message here"
+
+    if (event.data.type && (event.data.type === "CALL_OPEN_ENTER_COURSES")) {
+        openEnterCourses(event.data.courses)
     }
 }, false)
 
