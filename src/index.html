@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>auto GTC</title>
-    <link href="style.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
     <link href="libs/tailwindcss.css" rel="stylesheet">
     <script src="libs/inputMask.js"></script>
     <script src="libs/jquery-3.6.0.min.js"></script>
@@ -14,6 +14,7 @@
         <input class="w-12 text-blue-600 px-1" id="takeTime" placeholder="__:__" data-slots="_" data-accept="\d" size="4">
         <label for="takeTime">ساعت انتخاب واحد</label>
     </div>
+
     <div class="flex flex-col justify-center items-center">
         <table id="rowsTable" class="w-100 my-4"></table>
         <div class="flex flex-row justify-between w-full">
@@ -22,11 +23,10 @@
         </div>
     </div>
 
-
-    <span id="testSpan"></span>
     <span class="text-green-600 mt-4" id="statusSuccess"></span>
 
+    <span id="testSpan"></span>
 
-    <script src="script.js"></script>
+    <script src="js/popup.js"></script>
 </body>
 </html>

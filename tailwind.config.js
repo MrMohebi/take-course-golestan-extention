@@ -1,4 +1,4 @@
-// npx tailwindcss -i ./src/tailwindInp.css -o ./src/libs/tailwindcss.css --watch
+// npx tailwindcss -i ./src/css/tailwindInp.css -o ./src/libs/tailwindcss.css --watch
 
 
 module.exports = {
