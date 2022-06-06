@@ -22,21 +22,10 @@ async function openEnterCourses(courseCodes){
 
         document.getElementsByTagName("body")[0].click()
 
-        function AddRowT01(e,l){T01=document.getElementById(l).contentWindow[3][1].T01,hb=document.getElementById(l).contentWindow[3][1].hb;var t=[...e].reverse();window.ActiveXObject,T01.DataRow=$(T01).attr("datarow"),T01.CurrAdded=parseInt(T01.CurrAdded)+1;var n=T01.insertRow();n.className="Inserted",(s=n.insertCell()).innerHTML='<SELECT style="WIDTH: 50px;height:15px" onchange="return update_T01XML(this,\'F3125\')"><OPTION></OPTION><OPTION value="1" cl_ass="ins">ثبت</OPTION>\t<OPTION value="3" cla_ss="wai">انتظار</OPTION></SELECT>',s.childNodes[0].value=1,s=n.insertCell();var s=n.insertCell();ZCell=T01.rows[T01.DataRow-1].cells[2],s.innerHTML=ZCell.innerHTML,s.childNodes[0].value=t[0],$("input",s).removeClass("HideElement");for(var r=0;r<3;r++)s=n.insertCell(),ZCell=T01.rows[T01.DataRow-1].cells[s.cellIndex],s.innerHTML=ZCell.innerHTML,$("input",s).removeClass("HideElement"),s.childNodes[0].value=t[r+1];return s=n.insertCell(),s=n.insertCell(),s=n.insertCell(),(s=n.insertCell()).className="zw",window.ActiveXObject||(s.className="zwMB"),(s=n.insertCell()).className="zw",window.ActiveXObject||(s.className="zwMB"),s=n.insertCell(),s=n.insertCell(),s=n.insertCell(),n.scrollIntoView(),window.ActiveXObject||($(".txt",n).each(function(e,l){$(l).MBPrepare()}),2==hb&&$("td.zwMB",n).removeClass("zwMB")),n}
-
         // say that page is logged in and ready to start
         window.postMessage({type: "CALL_OPEN_ENTER_COURSES_res", status:"started"}, "*")
 
-
-        // find frame id
-        let iframeId = 'Faci'
-        for (let i = 3; i <50; i++) {
-            const iframeTempId = iframeId + i
-            if(document.getElementById(iframeTempId) !== null){
-                iframeId = iframeTempId
-                break
-            }
-        }
+        let iframeId = findFrameId()
 
         // check if it doesn't have error. if it has, get back to menu
         while (
@@ -62,6 +51,8 @@ async function openEnterCourses(courseCodes){
             console.log('page is not loaded')
         }
 
+        function AddRowT01(e,l){T01=document.getElementById(l).contentWindow[3][1].T01,hb=document.getElementById(l).contentWindow[3][1].hb;var t=[...e].reverse();window.ActiveXObject,T01.DataRow=$(T01).attr("datarow"),T01.CurrAdded=parseInt(T01.CurrAdded)+1;var n=T01.insertRow();n.className="Inserted",(s=n.insertCell()).innerHTML='<SELECT style="WIDTH: 50px;height:15px" onchange="return update_T01XML(this,\'F3125\')"><OPTION></OPTION><OPTION value="1" cl_ass="ins">ثبت</OPTION>\t<OPTION value="3" cla_ss="wai">انتظار</OPTION></SELECT>',s.childNodes[0].value=1,s=n.insertCell();var s=n.insertCell();ZCell=T01.rows[T01.DataRow-1].cells[2],s.innerHTML=ZCell.innerHTML,s.childNodes[0].value=t[0],$("input",s).removeClass("HideElement");for(var r=0;r<3;r++)s=n.insertCell(),ZCell=T01.rows[T01.DataRow-1].cells[s.cellIndex],s.innerHTML=ZCell.innerHTML,$("input",s).removeClass("HideElement"),s.childNodes[0].value=t[r+1];return s=n.insertCell(),s=n.insertCell(),s=n.insertCell(),(s=n.insertCell()).className="zw",window.ActiveXObject||(s.className="zwMB"),(s=n.insertCell()).className="zw",window.ActiveXObject||(s.className="zwMB"),s=n.insertCell(),s=n.insertCell(),s=n.insertCell(),n.scrollIntoView(),window.ActiveXObject||($(".txt",n).each(function(e,l){$(l).MBPrepare()}),2==hb&&$("td.zwMB",n).removeClass("zwMB")),n}
+
         for (const courseCode of courseCodes) {
             AddRowT01(courseCode, iframeId)
         }
@@ -77,3 +68,36 @@ async function openEnterCourses(courseCodes){
     }
 
 }
+
+
+function findFrameId() {
+    let iframeId = 'Faci'
+    for (let i = 3; i <200; i++) {
+        const iframeTempId = iframeId + i
+        if(document.getElementById(iframeTempId) !== null){
+            return iframeTempId
+        }
+    }
+}
+
+async function stayAlive() {
+    await new Promise(r => setTimeout(r, 600000));
+    if(!!document.getElementById('Faci2')?.contentWindow[3][2]){
+        document.getElementById('Faci2')?.contentWindow[3][2]?.getMenu(true,'252','0','12100',3,this)
+        await new Promise(r => setTimeout(r, 5000));
+        document.getElementsByTagName("body")[0].click()
+        let iframeId = findFrameId()
+
+        let countTries = 0
+        while ((!document.getElementById(iframeId)?.contentWindow[4]?.hasOwnProperty('ReturnMenu')||!document.getElementById(iframeId).contentWindow.hasOwnProperty(5)) && countTries < 30){
+            await new Promise(r => setTimeout(r, 500));
+            countTries++
+        }
+        await new Promise(r => setTimeout(r, 5000));
+        document.getElementById(iframeId)?.contentWindow[4]?.ReturnMenu()
+        console.log("stay alive done")
+    }
+    stayAlive()
+}
+
+stayAlive()
