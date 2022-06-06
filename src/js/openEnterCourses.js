@@ -27,23 +27,47 @@ async function openEnterCourses(courseCodes){
         // say that page is logged in and ready to start
         window.postMessage({type: "CALL_OPEN_ENTER_COURSES_res", status:"started"}, "*")
 
-        const iframeId = 'Faci3'
 
-        while(document.getElementById(iframeId) === null ||
+        // find frame id
+        let iframeId = 'Faci'
+        for (let i = 3; i <50; i++) {
+            const iframeTempId = iframeId + i
+            if(document.getElementById(iframeTempId) !== null){
+                iframeId = iframeTempId
+                break
+            }
+        }
+
+        // check if it doesn't have error. if it has, get back to menu
+        while (
+            !document.getElementById(iframeId).contentWindow.hasOwnProperty(5) ||
+            !document.getElementById(iframeId).contentWindow[4].hasOwnProperty('ReturnMenu')||
+            !document.getElementById(iframeId).contentWindow[5].document.getElementById('errtxt')?.title
+            ){
+            await new Promise(r => setTimeout(r, 500));
+        }
+        if(document.getElementById(iframeId).contentWindow[5].document.getElementById('errtxt')?.title === "ثبت نام شما پايان يافته يا در مرحله ثبت نام قرار نداريد"){
+            document.getElementById(iframeId).contentWindow[4].ReturnMenu()
+            openEnterCourses(courseCodes)
+            console.log("there is error in page!")
+            return
+        }
+
+
+        while(
         !document.getElementById(iframeId).contentWindow.hasOwnProperty(3) ||
-        !document.getElementById(iframeId).contentWindow.hasOwnProperty(4) ||
         !document.getElementById(iframeId).contentWindow[3].hasOwnProperty(1) ||
         document.getElementById(iframeId).contentWindow[3][1].document.getElementById('T01CNTITLE') === null){
             await new Promise(r => setTimeout(r, 500));
             console.log('page is not loaded')
-
         }
 
         for (const courseCode of courseCodes) {
             AddRowT01(courseCode, iframeId)
         }
 
-        await new Promise(r => setTimeout(r, 3000));
+        await new Promise(r => setTimeout(r, 2000));
+
         document.getElementById(iframeId).contentWindow[4].IM13_Do_onclick()
 
         console.log('done')
