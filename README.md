@@ -6,3 +6,4 @@ auto take course in Golestan
 - [ ] enable/disable extension by switch
 - [ ] auto login captcha solver
 - [ ] enable/disable auto login
+- [ ] logo

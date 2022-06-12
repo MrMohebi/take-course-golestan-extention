@@ -9,6 +9,7 @@
     <script src="libs/jquery-3.6.0.min.js"></script>
 </head>
 <body class="w-[200px] flex flex-col justify-center items-center p-4">
+    <span id="backToMain" class="self-start m-1 cursor-pointer"> < برگشت</span>
     <div class="w-full px-2 py-1 space-y-2 border-2 rounded-md flex flex-col mb-3">
         <div class=" flex justify-between items-center">
             <span id="accountStatus" >غیر فعال</span>
@@ -18,26 +19,19 @@
             <span id="daysLeft">0</span>
             <span>:روز های باقی مانده</span>
         </div>
-        <button id="loginBtn" class="text-xs cursor-pointer border px-2 py-1 rounded-md bg-cyan-300">فعال سازی</button>
     </div>
-
-
-    <div class="flex flex-row justify-center content-center space-x-2">
-        <input class="w-12 text-blue-600 px-1" id="takeTime" placeholder="__:__" data-slots="_" data-accept="\d" size="4">
-        <label for="takeTime">ساعت انتخاب واحد</label>
-    </div>
-
-    <div class="flex flex-col justify-center items-center">
-        <table id="rowsTable" class="w-100 my-4"></table>
-        <div class="flex flex-row justify-between w-full">
-            <button id="submit" class="text-xs cursor-pointer border px-2 py-1 rounded-md bg-lime-500">ثبت</button>
-            <button id="addRow" class="text-xs cursor-pointer border px-2 py-1 rounded-md bg-cyan-400">افزودن سطر</button>
-        </div>
+    <div class="text-right ">
+        <span>:راهنما</span>
+        <p class="text-start text-xs text-gray-600">
+            <br>
+            برای فعال سازی حساب، شماره همراه خود را وارد کنید.
+            درصورت داشتن کد فعال سازی، کد قبلی برای شما پیامک خواهد شد.
+            اگر
+        </p>
     </div>
 
     <span class="text-green-600 mt-4" id="statusSuccess"></span>
 
-    <span id="testSpan"></span>
 
     <script src="js/popup.js"></script>
 </body>

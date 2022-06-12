@@ -29,6 +29,14 @@ $(function () {
         },2000)
     })
 
+    $("#loginBtn").click(function (){
+        changePage('activeAccount')
+    })
+
+    $("#backToMain").click(function (){
+        changePage('index')
+    })
+
 })
 
 function loadData() {
@@ -99,4 +107,11 @@ function saveCourses() {
         }
     }
     chrome.storage.sync.set({curses})
+}
+
+
+function changePage(nextPageName){
+    chrome.storage.local.set({activePage: nextPageName});
+    chrome.action.setPopup({popup: nextPageName+".html"});
+    window.location.href = `/${nextPageName}.html`
 }
