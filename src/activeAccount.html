@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <title>auto GTC</title>
@@ -9,19 +9,23 @@
     <script src="libs/jquery-3.6.0.min.js"></script>
 </head>
 <body class="w-[200px] flex flex-col justify-center items-center p-4">
-    <span id="backToMain" class="self-start m-1 cursor-pointer"> < برگشت</span>
+    <span id="backToMain" class="self-end m-1 cursor-pointer"> برگشت > </span>
     <div class="w-full px-2 py-1 space-y-2 border-2 rounded-md flex flex-col mb-3">
         <div class=" flex justify-between items-center">
+            <span>وضعیت حساب:</span>
             <span id="accountStatus" >غیر فعال</span>
-            <span>:وضعیت حساب</span>
         </div>
         <div class="flex justify-between items-center">
+            <span>روز های باقی مانده:</span>
             <span id="daysLeft">0</span>
-            <span>:روز های باقی مانده</span>
         </div>
     </div>
+    <div class="my-2 flex items-center">
+        <label for="activeCodeInp">کد فعال سازی</label>
+        <input id="activeCodeInp" class="border px-1 rounded h-8 w-24 text-lg mr-2" placeholder="00000000">
+    </div>
     <div class="text-right ">
-        <span>:راهنما</span>
+        <span>راهنما:</span>
         <p class="text-start text-xs text-gray-600">
             <br>
             برای فعال سازی حساب، شماره همراه خود را وارد کنید.

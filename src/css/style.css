@@ -9,3 +9,12 @@ input::-webkit-inner-spin-button {
 input[type=number] {
     -moz-appearance: textfield;
 }
+
+@font-face {
+    font-family: "IranSans";
+    src: url("/font/IRANSansMobile.ttf");
+}
+
+body{
+    font-family: IranSans, serif;
+}

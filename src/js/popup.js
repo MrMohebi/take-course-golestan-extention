@@ -75,7 +75,7 @@ function addRow(val1=null,val2=null,val3=null,val4=null,numId=null) {
         saveCourses()
     })
 
-    newRow.append(input1,input2,input3,input4,close)
+    newRow.append(close,input4,input3,input2,input1)
     $("#rowsTable").append($("<tr></tr>").append(newRow))
 }
 
