@@ -1,6 +1,8 @@
 let previousRowIDNumber = 1
 const BASE_URL = "https://gtc.m3m.dev"
 
+let payment_url = ""
+
 $(function () {
     try{
         loadData()
@@ -46,8 +48,13 @@ $(function () {
                 showSuccess("کد فعال سازی برای شما ارسال شد.")
             }else {
                 $("#goPayContainer").css({"display":"flex"})
+                payment_url = data?.payLink
             }
         })
+    })
+
+    $("#goPayBtn").click(function () {
+        openUrlNewTab(payment_url)
     })
 
 })
@@ -138,4 +145,8 @@ function showErr(massage) {
 function showSuccess(massage) {
     $("#statusSuccess").text(massage)
     setTimeout(()=>{$("#statusSuccess").text("")},2000)
+}
+
+function openUrlNewTab(url) {
+    window.open(url, "_blank")
 }
