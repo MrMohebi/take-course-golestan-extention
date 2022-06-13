@@ -2,6 +2,7 @@ let previousRowIDNumber = 1
 const BASE_URL = "https://gtc.m3m.dev"
 
 let payment_url = ""
+let isActive = false
 
 $(function () {
     try{
@@ -24,6 +25,10 @@ $(function () {
     })
 
     $("#submit").click(function () {
+        if(!isActive){
+            showErr("ابتدا باید حساب خود را فعال کنید!")
+            return
+        }
         saveCourses()
         showSuccess("با موفقیت ثبت شد")
     })
@@ -97,10 +102,12 @@ function loadData() {
             $.post(BASE_URL+"/isActiveCodeValid",{ code: data.activeCode },function (data){
                 if(data?.isValid){
                     $("#daysLeft").text(data.daysLeft)
+                    isActive = true
                 }else {
                     chrome.storage.local.set({activeCode: "", daysLeft:0});
                     $("#loginBtn").css({"display":"block"})
                     $("#accountStatus").text("غیر فعال")
+                    isActive = false
                 }
             })
 
