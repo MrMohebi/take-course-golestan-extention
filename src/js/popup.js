@@ -25,7 +25,6 @@ $(function () {
 
     $("#submit").click(function () {
         saveCourses()
-
         showSuccess("با موفقیت ثبت شد")
     })
 
@@ -46,6 +45,7 @@ $(function () {
         $.post(BASE_URL+"/buyCode",{ phone },function (data){
             if(data?.hasCode){
                 showSuccess("کد فعال سازی برای شما ارسال شد.")
+                $("#loginBtn").css({"display":"none"})
             }else {
                 $("#goPayContainer").css({"display":"flex"})
                 payment_url = data?.payLink
@@ -57,10 +57,26 @@ $(function () {
         openUrlNewTab(payment_url)
     })
 
+    $("#checkActiveCodeBtn").on("click",function () {
+        const code = $("#activeCodeInp").val()
+        $.post(BASE_URL+"/isActiveCodeValid",{ code },function (data){
+            if(data?.isValid){
+                chrome.storage.sync.set({activeCode: code,daysLeft:data.daysLeft})
+
+                showSuccess("خوش آمدید!")
+                changePage('index')
+                $("#accountStatus").text("فعال")
+                $("#loginBtn").css({"display":"none"})
+            }else {
+                showErr("کد نامعتبر یا منقضی شده است")
+            }
+        })
+    })
+
 })
 
 function loadData() {
-    chrome.storage.sync.get(["time","curses"],function (data) {
+    chrome.storage.sync.get(["time","curses","activeCode","daysLeft"],function (data) {
         if(data?.time?.hour){
             const time = data.time
             $("#takeTime").val(time.hour+":"+time.minute)
@@ -74,6 +90,22 @@ function loadData() {
         }else{
             addRow(null,null,null,null,1)
         }
+        if(data?.activeCode && data.activeCode.length > 2){
+            $("#accountStatus").text("فعال")
+            $("#loginBtn").css({"display":"none"})
+
+            $.post(BASE_URL+"/isActiveCodeValid",{ code: data.activeCode },function (data){
+                if(data?.isValid){
+                    $("#daysLeft").text(data.daysLeft)
+                }else {
+                    chrome.storage.local.set({activeCode: "", daysLeft:0});
+                    $("#loginBtn").css({"display":"block"})
+                    $("#accountStatus").text("غیر فعال")
+                }
+            })
+
+        }
+
     })
 }
 
@@ -131,7 +163,7 @@ function saveCourses() {
 
 
 function changePage(nextPageName){
-    chrome.storage.local.set({activePage: nextPageName});
+    chrome.storage.sync.set({activePage: nextPageName});
     chrome.action.setPopup({popup: nextPageName+".html"});
     window.location.href = `/${nextPageName}.html`
 }
@@ -145,6 +177,9 @@ function showErr(massage) {
 function showSuccess(massage) {
     $("#statusSuccess").text(massage)
     setTimeout(()=>{$("#statusSuccess").text("")},2000)
+}
+function showLog(massage) {
+    $("#LOG_SPAN").text(massage)
 }
 
 function openUrlNewTab(url) {
