@@ -20,21 +20,38 @@
             <span id="daysLeft">0</span>
         </div>
     </div>
-    <div class="my-2 flex items-center">
-        <label for="activeCodeInp">کد فعال سازی</label>
-        <input id="activeCodeInp" class="border px-1 rounded h-8 w-24 text-lg mr-2" placeholder="00000000">
-    </div>
-    <div class="text-right ">
-        <span>راهنما:</span>
-        <p class="text-start text-xs text-gray-600">
-            <br>
-            برای فعال سازی حساب، شماره همراه خود را وارد کنید.
-            درصورت داشتن کد فعال سازی، کد قبلی برای شما پیامک خواهد شد.
-            اگر
-        </p>
+
+    <div class="flex items-center">
+        <label for="activeCodeInp"> کد فعال سازی:</label>
+        <input id="activeCodeInp" class="border px-1 rounded h-7 w-24 text-base" placeholder="00000000">
     </div>
 
+    <div class="my-2">
+        <label for="phoneInp"> شماره همراه:</label>
+        <input id="phoneInp" class="border px-1 rounded h-7 w-32 text-base" placeholder="09221231213" >
+    </div>
+
+    <div class="mb-4 flex flex-col space-y-2" id="checkPhoneContainer">
+        <button id="sendPhoneBtn" class="text-xs cursor-pointer border px-2 py-1 rounded-md bg-cyan-300 ">برسی شماره</button>
+    </div>
+
+    <div class="mb-4 flex flex-col space-y-2" style="display: none" id="goPayContainer">
+        <button id="goPayBtn" class="text-xs cursor-pointer border px-2 py-1 rounded-md bg-cyan-300 ">رفتن به درگاه پرداخت</button>
+        <span class="text-red-600">کد فعال برای این شماره یافت نشد</span>
+    </div>
+
+    <span class="text-red-600 mt-4" id="statusError"></span>
     <span class="text-green-600 mt-4" id="statusSuccess"></span>
+
+    <div class="text-right ">
+        <span>راهنما:</span>
+        <span    class="text-start text-xs text-gray-600">
+            <br>
+            برای فعال سازی حساب، شماره همراه خود را وارد کنید تا کد فعال سازی برای شما ارسال شود.
+            درصورت عدم وجود کد و یا منقضی شدن آن، به درگاه پرداخت منتقل خواهید شد.
+        </span>
+    </div>
+
 
 
     <script src="js/popup.js"></script>

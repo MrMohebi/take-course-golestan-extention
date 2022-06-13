@@ -1,4 +1,5 @@
 let previousRowIDNumber = 1
+const BASE_URL = "https://gtc.m3m.dev"
 
 $(function () {
     try{
@@ -23,10 +24,7 @@ $(function () {
     $("#submit").click(function () {
         saveCourses()
 
-        $("#statusSuccess").text("با موفقیت ثبت شد")
-        setTimeout(()=>{
-            $("#statusSuccess").text("")
-        },2000)
+        showSuccess("با موفقیت ثبت شد")
     })
 
     $("#loginBtn").click(function (){
@@ -35,6 +33,21 @@ $(function () {
 
     $("#backToMain").click(function (){
         changePage('index')
+    })
+
+    $("#sendPhoneBtn").click(function () {
+        const phone = $("#phoneInp").val()
+        if(phone.length !== 11 || phone.slice(0,2) !== "09"){
+            showErr("شماره همراه اشتباه وارد شده است")
+        }
+
+        $.post(BASE_URL+"/buyCode",{ phone },function (data){
+            if(data?.hasCode){
+                showSuccess("کد فعال سازی برای شما ارسال شد.")
+            }else {
+                $("#goPayContainer").css({"display":"flex"})
+            }
+        })
     })
 
 })
@@ -114,4 +127,15 @@ function changePage(nextPageName){
     chrome.storage.local.set({activePage: nextPageName});
     chrome.action.setPopup({popup: nextPageName+".html"});
     window.location.href = `/${nextPageName}.html`
+}
+
+
+function showErr(massage) {
+    $("#statusError").text(massage)
+    setTimeout(()=>{$("#statusError").text("")},2000)
+}
+
+function showSuccess(massage) {
+    $("#statusSuccess").text(massage)
+    setTimeout(()=>{$("#statusSuccess").text("")},2000)
 }
