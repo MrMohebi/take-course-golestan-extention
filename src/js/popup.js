@@ -86,7 +86,7 @@ function loadData() {
             const time = data.time
             $("#takeTime").val(time.hour+":"+time.minute)
         }
-        if(data?.curses[0]){
+        if(data?.curses && data.curses.hasOwnProperty(0)){
             const curses = data.curses
             removeRow(1)
             for (const eCurse of curses) {
