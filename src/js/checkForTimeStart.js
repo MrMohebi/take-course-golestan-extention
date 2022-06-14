@@ -4,22 +4,23 @@ function init() {
     insertEnterCoursesScriptTag()
 
     timeCheckerIntervalID = setInterval(()=>{
-        const [siteHour, siteMinute] = document.getElementById('_mt_bou').children[4].innerHTML.slice(0,8).split(":")
-        chrome.storage.sync.get(["time","curses"],function (data) {
-            if(data?.time){
-                const definedTime = data?.time
-                if(parseInt(siteHour) === parseInt(definedTime.hour) && parseInt(siteMinute) === parseInt(definedTime.minute)){
-                    // check if courses are set
-                    if(!data?.curses[0]) return false
+        try {
+            const [siteHour, siteMinute] = document.getElementById('_mt_bou').children[4].innerHTML.slice(0,8).split(":")
+            chrome.storage.sync.get(["time","curses"],function (data) {
+                if(data?.time){
+                    const definedTime = data?.time
+                    if(parseInt(siteHour) === parseInt(definedTime.hour) && parseInt(siteMinute) === parseInt(definedTime.minute)){
+                        // check if courses are set
+                        if(!data?.curses[0]) return false
 
-                    const courses = data.curses
+                        const courses = data.curses
 
-                    console.log("its time :)")
-                    window.postMessage({type: "CALL_OPEN_ENTER_COURSES", courses}, "*")
-
+                        console.log("its time :)")
+                        window.postMessage({type: "CALL_OPEN_ENTER_COURSES", courses}, "*")
+                    }
                 }
-            }
-        })
+            })
+        }catch (e) {}
     },2000)
 }
 

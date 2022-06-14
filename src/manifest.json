@@ -1,16 +1,18 @@
 {
-  "name": "auto GTC",
-  "version": "1.0.0",
+  "name": "auto Golestan",
+  "version": "1.0.1",
   "description": "auto Golestan Take Course",
   "manifest_version": 3,
   "author": "MrM - MMMohebi",
+  "icons": {
+      "16":"img/icon/icon-16x16.png",
+      "48":"img/icon/icon-48x48.png",
+      "128":"img/icon/icon-128x128.png"
+  },
   "action":{
     "default_popup": "index.html",
     "default_title": "auto GTC"
   },
-//  "background": {
-//    "service_worker": "js/background.js"
-//  },
   "content_scripts": [
     {
       "run_at": "document_end",
