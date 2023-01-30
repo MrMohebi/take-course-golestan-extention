@@ -74,6 +74,7 @@ function AddRowT01(courseCode, frameID){
         if(hb==2)
             $("td.zwMB",TR).removeClass("zwMB");
     }
+    TR.cells[5].childNodes[0].change()
     return TR;
 }
 
