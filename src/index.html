@@ -8,38 +8,118 @@
     <script src="libs/inputMask.js"></script>
     <script src="libs/jquery-3.6.0.min.js"></script>
 </head>
-<body class="w-[200px] flex flex-col justify-center items-center p-4">
-    <div class="w-full px-2 py-1 space-y-2 border-2 rounded-md flex flex-col mb-3">
-        <div class=" flex justify-between items-center">
-            <span>وضعیت حساب:</span>
-            <span id="accountStatus" >غیر فعال</span>
-        </div>
-        <div class="flex justify-between items-center">
-            <span>روز های باقی مانده:</span>
-            <span id="daysLeft">0</span>
-        </div>
-        <button id="loginBtn" class="text-xs cursor-pointer border px-2 py-1 rounded-md bg-cyan-300 ">فعال سازی</button>
-    </div>
-
-
-    <div class="flex flex-row justify-center content-center space-x-2">
-        <label for="takeTime">ساعت انتخاب واحد</label>
-        <input class="w-12 text-blue-600 px-1" id="takeTime" placeholder="__:__" data-slots="_" data-accept="\d" size="4">
-    </div>
-
-    <div class="flex flex-col justify-center items-center">
-        <table id="rowsTable" class="w-100 my-4"></table>
-        <div class="flex flex-row justify-between w-full">
-            <button id="addRow" class="text-xs cursor-pointer border px-2 py-1 rounded-md bg-cyan-400">افزودن سطر</button>
-            <button id="submit" class="text-xs cursor-pointer border px-2 py-1 rounded-md bg-lime-500">ثبت</button>
+<body class="w-[230px] flex flex-col justify-center items-center text-xs space-y-2">
+    <div class="flex flex-row  items-center w-full px-2 pt-1">
+        <img alt="logo" src="img/logo.svg" width="40" height="40"/>
+        <div class="mr-2 mt-2 flex flex-col font-semibold">
+            <div>انتخاب واحد خودکار گلستان</div>
+            <div class="text-secondary">Auto Golestan Unit</div>
         </div>
     </div>
 
-    <span class="text-red-600 mt-4" id="statusError"></span>
-    <span class="text-green-600" id="statusSuccess"></span>
-    <span id="LOG_SPAN"></span>
+    <div class="line-gray w-full "></div>
 
-    <a href="https://gtc.m3m.dev/aboutUs" target="_blank">ارتباط با ما</a>
+    <div class="flex  justify-between w-full items-center px-2">
+        <div class="flex flex-col justify-between">
+            <div class="font-semibold">حساب کاربری</div>
+            <div id="accountStatus">غیر فعال</div>
+        </div>
+        <button id="loginBtn" class="text-xs cursor-pointer px-2 rounded-md bg-[#2684FF] text-white h-[25px]">فعال سازی</button>
+    </div>
+
+    <div class="bg-gray-100 px-3 py-1 text-secondary text-[0.6rem] text-justify">
+        پس از فعال سازی حساب میتوانید با استفاده از این افزونه به صورت خودکار انتخاب واحد دانشگاه خود را انجام دهید
+    </div>
+
+
+    <div class="flex flex-row justify-between items-center w-full px-2">
+        <div>ساعت انتخاب واحد</div>
+        <div class="flex flex-row">
+            <div>
+                <label for="takeTime_hour"></label>
+                <input id="takeTime_hour" placeholder="00" type="number" maxlength="2" class="inp-box w-[30px]" oninput="this.value=this.value.slice(0,this.maxLength)">
+            </div>
+            <span class="text-xl mx-1">:</span>
+            <div>
+                <label for="takeTime_minute"></label>
+                <input id="takeTime_minute" placeholder="00" type="number" maxlength="2" class="inp-box w-[30px]" oninput="this.value=this.value.slice(0,this.maxLength)">
+            </div>
+        </div>
+    </div>
+
+    <div class="line-gray w-full "></div>
+
+<!--    <table id="rowsTable" class="w-100 my-4"></table>-->
+
+    <div dir="ltr" class="w-full px-2">
+        <table class="w-full">
+            <tr class="text-[0.55rem] normal">
+                <th>حذف</th>
+                <th colspan="3">شماره درس</th>
+                <th>گروه</th>
+                <th>کپی</th>
+                <th>غیر فعال</th>
+            </tr>
+            <tr>
+                <td class="cursor-pointer center-all h-[25px]" >
+                    <div style="transform: translate(0, 5px)">&#x2715</div>
+                </td>
+                <td>
+                    <input placeholder="00" type="number" maxlength="2" class="inp-box w-[25px]" oninput="this.value=this.value.slice(0,this.maxLength)">
+                </td>
+                <td>
+                    <input placeholder="00" type="number" maxlength="2" class="inp-box w-[25px]" oninput="this.value=this.value.slice(0,this.maxLength)">
+                </td>
+                <td>
+                    <input placeholder="000" type="number" maxlength="3" class="inp-box w-[30px]" oninput="this.value=this.value.slice(0,this.maxLength)">
+                </td>
+                <td>
+                    <input placeholder="00" type="number" maxlength="2" class="inp-box w-[25px]" oninput="this.value=this.value.slice(0,this.maxLength)">
+                </td>
+                <td class=" m-auto cursor-pointer">
+                    <img width="15" src="img/copy.svg" alt="copy" class="m-auto" >
+                </td>
+                <td class="cursor-pointer">
+                    <img width="15" src="img/eye.svg" alt="hide" class="m-auto" >
+                </td>
+            </tr>
+            <tr>
+                <th class="py-2" colspan="7">
+                    <div class="center-all  w-full">
+                        <div class="line-gray w-10/12"></div>
+                    </div>
+                </th>
+            </tr>
+        </table>
+    </div>
+
+    <div id="addRow" class="flex flex-row cursor-pointer items-center w-full px-2">
+        <img width="22" src="img/addsquare.svg" alt="add">
+        <span class="text-[#229ED9] mr-2 text-sm self-center" style="color: #229ED9">افزودن</span>
+    </div>
+
+    <div class="bg-gray-100 px-3 py-1 text-secondary text-[0.6rem] text-justify">
+        پس از اطمینان از اعداد مربوط به واحد های وارد شده با استفاده از کلید زیر افزونه را در حالت فعال در بیاورید
+    </div>
+
+    <div class="px-2  w-full">
+        <button id="submit" class="text-sm cursor-pointer px-2 rounded-md bg-[#2684FF] text-white h-[35px] w-full">شروع به کار</button>
+    </div>
+
+    <div id="statusError_container" style="background-color: #FED3D3; color: #E14942; visibility: hidden" class="w-full h-[22px] flex flex-row justify-between items-center" >
+        <div class=" flex flex-row items-center">
+            <img class="mx-2" width="16" src="img/err.svg" alt="err">
+            <span  id="statusError" class="mt-1"></span>
+        </div>
+        <div class="ml-2 mt-1">x</div>
+    </div>
+
+<!--    <span class="text-red-600 mt-4" ></span>-->
+<!--    <span class="text-green-600" id="statusSuccess"></span>-->
+<!--    <span id="LOG_SPAN"></span>-->
+
+<!--    <a href="https://gtc.m3m.dev/aboutUs" target="_blank">ارتباط با ما</a>-->
+
     <script src="js/popup.js"></script>
 </body>
 </html>

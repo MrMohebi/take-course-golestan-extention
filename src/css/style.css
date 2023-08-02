@@ -12,9 +12,47 @@ input[type=number] {
 
 @font-face {
     font-family: "IranSans";
-    src: url("/font/IRANSansMobile.ttf");
+    src: url("../font/IRANSansMobile.ttf");
 }
 
 body{
     font-family: IranSans, serif;
+    color: #003577;
+}
+
+body > * :focus{
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+}
+
+.line-gray{
+    border: 1px solid #F9F8F4;
+    height: 2px;
+    /*margin: 5px 0 5px 0;*/
+}
+
+.text-secondary{
+    color: #52749E;
+}
+
+.inp-box{
+    border-radius: 0.375rem;
+    background: #F9F8F4;
+    height: 25px;
+    flex-shrink: 0;
+    text-align: center;
+    border: 0.5px solid #D8D8D8;
+    padding-top: 5px;
+    font-size: 0.875rem; /* 14px */
+    line-height: 1.25rem; /* 20px */
+}
+
+.inp-box:focus{
+    border: 0.5px solid #2684FF;
+}
+
+.center-all{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
