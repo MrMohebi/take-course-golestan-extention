@@ -8,27 +8,44 @@
     <script src="libs/inputMask.js"></script>
     <script src="libs/jquery-3.6.0.min.js"></script>
 </head>
-<body class="w-[230px] flex flex-col justify-center items-center text-xs space-y-2">
-    <div class="flex flex-row  items-center w-full px-2 pt-1">
-        <img alt="logo" src="img/logo.svg" width="40" height="40"/>
-        <div class="mr-2 mt-2 flex flex-col font-semibold">
-            <div>انتخاب واحد خودکار گلستان</div>
-            <div class="text-secondary">Auto Golestan Unit</div>
+<body class="w-[300px] flex flex-col justify-center items-center text-xs space-y-2">
+    <div class="flex flex-row  items-center justify-between w-full px-2 pt-1">
+        <div class="flex flex-row  items-center">
+            <img alt="logo" src="img/logo.svg" width="40" height="40"/>
+            <div class="mr-2 mt-2 flex flex-col font-semibold">
+                <div>انتخاب واحد خودکار گلستان</div>
+                <div class="text-secondary">Auto Golestan Unit</div>
+            </div>
+        </div>
+        <div>
+            <button id="aboutUsBtn" class="text-xs cursor-pointer px-2 rounded-md border-2 border-primary text-primary h-[25px]">درباره ما</button>
         </div>
     </div>
 
     <div class="line-gray w-full "></div>
 
+    <!-------------------------Account section----------------------->
+    <div class="flex justify-between w-full items-center px-2 hidden">
+        <div class="flex flex-col justify-between">
+            <div id="accountUsername" class="font-semibold">09221321311</div>
+            <div id="accountStatus">غیر فعال</div>
+        </div>
+        <button id="activeBtn" class="text-xs cursor-pointer px-2 rounded-md bg-primary text-white h-[25px]">فعال سازی</button>
+    </div>
+
+
     <div class="flex  justify-between w-full items-center px-2">
         <div class="flex flex-col justify-between">
             <div class="font-semibold">حساب کاربری</div>
-            <div id="accountStatus">غیر فعال</div>
+            <div>به حساب کاربری خود وارد شوید</div>
         </div>
-        <button id="loginBtn" class="text-xs cursor-pointer px-2 rounded-md bg-[#2684FF] text-white h-[25px]">فعال سازی</button>
+        <button id="loginBtn" class="text-xs cursor-pointer px-2 rounded-md bg-primary text-white h-[25px]">ورود به حساب</button>
     </div>
+    <!-------------------------Account section----------------------->
+
 
     <div class="bg-gray-100 px-3 py-1 text-secondary text-[0.6rem] text-justify">
-        پس از فعال سازی حساب میتوانید با استفاده از این افزونه به صورت خودکار انتخاب واحد دانشگاه خود را انجام دهید
+        پس از خریداری اعتبار حساب با استفاده از این افزونه میتوانید انتخاب واحد گلستان را سریع تر از همیشه به صورت خودکار انجام دهید
     </div>
 
 
@@ -53,17 +70,18 @@
 
     <div dir="ltr" class="w-full px-2">
         <table class="w-full">
-            <tr class="text-[0.55rem] normal">
-                <th>حذف</th>
-                <th colspan="3">شماره درس</th>
-                <th>گروه</th>
-                <th>کپی</th>
-                <th>غیر فعال</th>
+            <tr>
+                <th class="text-secondary" colspan="3">شماره درس</th>
+                <td class="text-secondary">|</td>
+                <th class="flex flex-row justify-end text-secondary">گروه</th>
+                <th colspan="6">
+                    <div class="flex flex-row justify-end">
+                        <div class="text-secondary">(2/5)</div>
+                        <div>واحد های درسی</div>
+                    </div>
+                </th>
             </tr>
             <tr>
-                <td class="cursor-pointer center-all h-[25px]" >
-                    <div style="transform: translate(0, 5px)">&#x2715</div>
-                </td>
                 <td>
                     <input placeholder="00" type="number" maxlength="2" class="inp-box w-[25px]" oninput="this.value=this.value.slice(0,this.maxLength)">
                 </td>
@@ -73,18 +91,25 @@
                 <td>
                     <input placeholder="000" type="number" maxlength="3" class="inp-box w-[30px]" oninput="this.value=this.value.slice(0,this.maxLength)">
                 </td>
+                <td class="text-secondary">|</td>
                 <td>
                     <input placeholder="00" type="number" maxlength="2" class="inp-box w-[25px]" oninput="this.value=this.value.slice(0,this.maxLength)">
                 </td>
+                <td class="text-secondary">|</td>
                 <td class=" m-auto cursor-pointer">
                     <img width="15" src="img/copy.svg" alt="copy" class="m-auto" >
                 </td>
+                <td class="text-secondary">|</td>
                 <td class="cursor-pointer">
                     <img width="15" src="img/eye.svg" alt="hide" class="m-auto" >
                 </td>
+                <td class="text-secondary">|</td>
+                <td class="cursor-pointer center-all h-[25px]" >
+                    <div style="transform: translate(0, 5px)">&#x2715</div>
+                </td>
             </tr>
             <tr>
-                <th class="py-2" colspan="7">
+                <th class="py-2" colspan="10">
                     <div class="center-all  w-full">
                         <div class="line-gray w-10/12"></div>
                     </div>
@@ -95,7 +120,7 @@
 
     <div id="addRow" class="flex flex-row cursor-pointer items-center w-full px-2">
         <img width="22" src="img/addsquare.svg" alt="add">
-        <span class="text-[#229ED9] mr-2 text-sm self-center" style="color: #229ED9">افزودن</span>
+        <span class="text-primary-light mr-2 text-sm self-center" style="color: #229ED9">افزودن</span>
     </div>
 
     <div class="bg-gray-100 px-3 py-1 text-secondary text-[0.6rem] text-justify">
@@ -103,7 +128,7 @@
     </div>
 
     <div class="px-2  w-full">
-        <button id="submit" class="text-sm cursor-pointer px-2 rounded-md bg-[#2684FF] text-white h-[35px] w-full">شروع به کار</button>
+        <button id="submit" class="text-sm cursor-pointer px-2 rounded-md bg-primary text-white h-[35px] w-full">شروع به کار</button>
     </div>
 
     <div id="statusError_container" style="background-color: #FED3D3; color: #E14942; visibility: hidden" class="w-full h-[22px] flex flex-row justify-between items-center" >

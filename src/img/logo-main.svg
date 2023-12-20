@@ -1,14 +1,14 @@
 <svg width="1000" height="1000" viewBox="0 0 1000 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect width="1000" height="1000" rx="400" transform="matrix(-1 0 0 1 1000 0)" fill="#003577"/>
+<rect width="1000" height="1000" rx="400" transform="matrix(-1 0 0 1 1000 0)" fill="#2684FF"/>
 <rect width="840" height="840" rx="330" transform="matrix(-1 0 0 1 920 80)" fill="#F9F8F4"/>
-<rect width="680" height="680" rx="265" transform="matrix(-1 0 0 1 840 160)" fill="#003577"/>
-<rect width="133" height="127" transform="matrix(-1 0 0 1 213 420)" fill="#003577"/>
-<path d="M394 500H105C91.1929 500 80 511.193 80 525V580H394V500Z" fill="url(#paint0_linear_1_59)"/>
+<rect width="680" height="680" rx="265" transform="matrix(-1 0 0 1 840 160)" fill="#2684FF"/>
+<rect width="133" height="127" transform="matrix(-1 0 0 1 213 420)" fill="#2684FF"/>
+<path d="M394 500H105C91.1929 500 80 511.193 80 525V580H394V500Z" fill="url(#paint0_linear_1_13)"/>
 <path fill-rule="evenodd" clip-rule="evenodd" d="M567 220C684.637 220 780 315.363 780 433V567C780 684.637 684.637 780 567 780H433C315.363 780 220 684.637 220 567V433C220 315.363 315.363 220 433 220H567ZM561 300C637.768 300 700 362.232 700 439V561C700 637.768 637.768 700 561 700H439C362.232 700 300 637.768 300 561V439C300 362.232 362.232 300 439 300H561Z" fill="#F9F8F4"/>
-<rect width="133" height="107" transform="matrix(-1 0 0 1 780 420)" fill="#003577"/>
+<rect width="133" height="107" transform="matrix(-1 0 0 1 780 420)" fill="#2684FF"/>
 <path d="M780 525C780 511.193 768.807 500 755 500H394V580H780V525Z" fill="#F9F8F4"/>
 <defs>
-<linearGradient id="paint0_linear_1_59" x1="394" y1="540" x2="80" y2="540" gradientUnits="userSpaceOnUse">
+<linearGradient id="paint0_linear_1_13" x1="394" y1="540" x2="80" y2="540" gradientUnits="userSpaceOnUse">
 <stop stop-color="#F9F8F4"/>
 <stop offset="0.14154" stop-color="#F9F8F4"/>
 <stop offset="0.4375" stop-color="#F9F8F4" stop-opacity="0.35"/>
